@@ -1,75 +1,75 @@
 #include "shell.h"
 
-int string_length(char *str);
-int string_compare(char *str1, char *str2);
+int _strlen(char *s);
+int _strcmp(char *s1, char *s2);
 
 /**
- * string_length - Returns the length of a string.
- * @str: The string whose length to check.
- * Return: Integer length of the string.
+ *  _strlen - Returns the length of a string.
+ * @s: String length to check.
+ * Return: The Integer length of the string.
  */
 
-int string_length(char *str)
+int _strlen(char *s)
 {
 	int length = 0;
 
-	if (!str)
+	if (!s)
 		return (0);
 
-	for (; *str != '\0'; str++)
+	for (; *s != '\0'; s++)
 		length++;
 	return (length);
 }
 
 /**
- * string_compare - Performs lexicographic comparison of two strings.
- * @str1: The first string.
- * @str2: The second string.
- * Return: Negative if str1 < str2, positive if str1 > str2, 0 if str1 == str2.
+ * _strcmp - Performs lexicographic comparison of two strings.
+ * @s1: First string.
+ * @s2: Second string.
+ * Return: Negative if s1 < s2, positive if s1 > s2, 0 if s1 == s2.
  */
 
-int string_compare(char *str1, char *str2)
+int _strcmp(char *s1, char *s2)
 {
-	for (; *str1 && *str2; str1++, str2++)
+	for (; *s1 && *s2; s1++, s2++)
 	{
-		if (*str1 != *str2)
-			return (*str1 - *str2);
+		if (*s1 != *s2)
+			return (*s1 - *s2);
 	}
-	return (*str1 - *str2);
+	return (*s1 - *s2);
 }
 
 /**
- * string_starts_with - Checks if `needle` starts with `haystack`.
- * @haystack: String to search.
+ * starts_with - Checks if `needle` starts with `haystack`.
+ * @haystack: The String to search.
  * @needle: The substring to find.
- * Return: Address of the next character of `haystack` or NULL.
+ * Return: The Address of the next character of `haystack` or NULL.
  */
 
-char *string_starts_with(const char *haystack, const char *needle)
+char *starts_with(const char *haystack, const char *needle)
 {
 	while (*needle)
 	{
 		if (*needle++ != *haystack++)
 			return (NULL);
 	}
-	return (char *haystack);
+	return ((char *)haystack);
 }
 
 /**
- * string_concatenate - Concatenates two strings.
- * @destination: The destination buffer.
- * @source: The source buffer.
+ * _strcat - Concatenates two strings.
+ * @dest: The destination buffer.
+ * @src: The buffer source.
  * Return: Pointer to the destination buffer.
  */
 
-char *string_concatenate(char *destination, char *source)
+char *_strcat(char *dest, char *src)
 {
-	char *result = destination;
+	char *ret = dest;
 
-	while (*destination)
-		destination++;
-	while (*source)
-		*destination++ = *source++;
-	*destination = *source;
-	return (result);
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;
+	*dest = *src;
+	return (ret);
 }

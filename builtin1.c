@@ -7,22 +7,14 @@ int unset_alias(info_t *info, char *str);
  * _myhistory - Display the history list, one command per line,
  *             preceded with line numbers, starting at 0.
  * @info: Structure containing potential arguments. Used to maintain
- *        a constant function prototype.
- * Return: Always 0
+ *        constant function prototype.
+ * Return: 0  Always
  */
 
 int _myhistory(info_t *info)
 {
-	list_t *node = info->history;
-	int line_num = 0;
-
-	while (node)
-	{
-		_printf("%d %s\n", line_num++, node->str);
-		node = node->next;
-	}
-
-	return (0);
+    print_list(info->history);
+    return (0);
 }
 
 /**

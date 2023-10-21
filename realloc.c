@@ -23,9 +23,10 @@ char *_memset(char *s, char b, unsigned int n)
 }
 
 /**
- * ffree - frees a string of strings
- * @pp: string of strings
+ * ffree - To free a string of strings
+ * @pp: The string of strings
  */
+
 void ffree(char **pp)
 {
 	char **a = pp;
@@ -43,35 +44,41 @@ void ffree(char **pp)
 }
 
 /**
- * _realloc - reallocates a block of memory
- * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of the previous block
- * @new_size: byte size of the new block
- * Return: pointer to da ol' block nameen.
+ * _realloc - Reallocate a memory block
+ * @ptr: Pointer to the previously allocated memory
+ * @old_size: Size of the old memory block.
+ * @new_size: Size of the new memory block.
+ * Return: Pointer to the newly allocated memory block
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_realloc(void *ptr, size_t old_size, size_t new_size)
 {
-	char *p;
+    char *new_ptr;
+    size_t i;
 
-	if (!ptr)
-		return (malloc(new_size));
-	if (!new_size)
-	{
-		free(ptr);
-		return (NULL);
-	}
-	if (new_size == old_size)
-		return (ptr);
+    if (!ptr)
+        return (malloc(new_size));
 
-	p = malloc(new_size);
-	if (!p)
-		return (NULL);
+    if (new_size == 0)
+    {
+        free(ptr);
+        return (NULL);
+    }
 
-	for (unsigned int i = 0; i < (old_size < new_size ? old_size : new_size); i++)
-	{
-		p[i] = ((char *)ptr)[i];
-	}
+    if (new_size == old_size)
+        return (ptr);
 
-	free(ptr);
-	return (p);
+    new_ptr = malloc(new_size);
+
+    if (!new_ptr)
+        return (NULL);
+
+    i = 0;
+    while (i < old_size && i < new_size)
+    {
+        new_ptr[i] = ((char *)ptr)[i];
+        i++;
+    }
+
+    free(ptr);
+    return (new_ptr);
 }
